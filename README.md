@@ -10,12 +10,23 @@ game. The source code is private.
 
 ## First launch
 
-The app is not yet code-signed, so your computer will warn you once.
+The app is not yet signed with an Apple or Microsoft certificate, so your computer will warn you
+once. The warning is about the missing certificate, not a broken download.
 
-- **Mac:** drag Tax Noir to Applications, then right-click it and choose **Open** (or go to
-  System Settings → Privacy & Security and click **Open Anyway**). Without this step macOS may
-  say the app "is damaged" or "can't be opened"; that message is about the missing signature,
-  not a broken download.
+- **Mac:** drag Tax Noir to Applications and open it. macOS says it can't verify the app; click
+  **Done** (or **Cancel**). Then open System Settings → Privacy & Security, scroll down to the
+  message about Tax Noir and click **Open Anyway**, then confirm. On macOS 14 Sonoma and older you
+  can instead right-click the app and choose **Open**. On macOS 15 Sequoia and later right-click →
+  Open no longer gets past the warning; use **Open Anyway** in System Settings.
+
+  If macOS still refuses (for example it says the app "is damaged"), open Terminal and run:
+
+  ```bash
+  xattr -dr com.apple.quarantine "/Applications/Tax Noir.app"
+  ```
+
+  This removes only the "downloaded from the internet" flag from this one app; it changes no other
+  security settings. Then open Tax Noir as usual.
 - **Windows:** when SmartScreen appears, click **More info → Run anyway**.
 
 ## Updates
